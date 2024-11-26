@@ -1,0 +1,25 @@
+# Configurações do Alacritty:
+
+import = [
+  # uncomment the flavour you want below:
+  # "~/.config/alacritty/catppuccin-latte.toml"
+  # "~/.config/alacritty/catppuccin-frappe.toml"
+    "~/.config/alacritty/catppuccin-macchiato.toml"
+  # "~/.config/alacritty/catppuccin-mocha.toml"
+
+	# "~/.config/alacritty/dracula.toml"
+]
+
+
+shell = { program = "/bin/zsh", args = ["-l"] }
+
+
+[font]
+	normal = { family = "MesloLGLNerdFont" }
+	size = 8.0
+
+[window]
+	opacity = 0.9
+
+[cursor]
+	style = { shape = "beam", blinking = "On" }
