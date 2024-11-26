@@ -1,7 +1,7 @@
 # CrisNote dotfiles
 Dotfiles/Configs from notebook CrisNote
 
-![FastFetch](https://github.com/jKy0n/CrisNote-dotfiles/blob/main/Pictures/dotfiles-media-Crisnote/CrisNote-FastFatch-26-Nov-2024.png)
+![FastFetch](https://github.com/jKy0n/CrisNote-dotfiles/blob/bcadd89ceef071bc155da72d8f3fe14488fa450d/Pictures/dotfiles-media-CrisNote/CrisNote-FastFatch-26-Nov-2024.png)
 
 # Operational System:
 - OS: Gentoo Linux 2.17 x86_64
@@ -24,7 +24,7 @@ Dotfiles/Configs from notebook CrisNote
  - Font: MesloLGLDZ Nerd Font / Noto Sans
  - Cursor: Future-black-cursors
 
-![Hardware](https://github.com/jKy0n/CrisNote-dotfiles/blob/main/Pictures/dotfiles-media-Crisnote/CrisNote-Hardware-26-Nov-2024.png)
+![Hardware](https://github.com/jKy0n/CrisNote-dotfiles/blob/bcadd89ceef071bc155da72d8f3fe14488fa450d/Pictures/dotfiles-media-CrisNote/CrisNote-Hardware-26-11-2024.jpeg)
 
 # Hardware:
 - CPU: Intel 12th Core i7 1255U (4+8) @ 4,7 GHz
@@ -34,7 +34,7 @@ Dotfiles/Configs from notebook CrisNote
     - NVMe: 240GB
     - SSD: 240GB
 
-![PartitionScheme](https://github.com/jKy0n/CrisNote-dotfiles/blob/main/Pictures/dotfiles-media-Crisnote/CrisNote-PartitionScheme-26-Nov-2024.png)
+![PartitionScheme](https://github.com/jKy0n/CrisNote-dotfiles/blob/bcadd89ceef071bc155da72d8f3fe14488fa450d/Pictures/dotfiles-media-CrisNote/CrisNote-PartitionScheme-26-Nov-2024.png)
 
 # Inputs:
 - KB: HyperX Alloy Origins Core (ABNT2 - Red Switches)
