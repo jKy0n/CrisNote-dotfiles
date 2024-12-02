@@ -27,12 +27,14 @@ Dotfiles/Configs from notebook CrisNote
 ![Hardware](https://github.com/jKy0n/CrisNote-dotfiles/blob/bcadd89ceef071bc155da72d8f3fe14488fa450d/Pictures/dotfiles-media-CrisNote/CrisNote-Hardware-26-11-2024.jpeg)
 
 # Hardware:
+- Notebook: Samsung Galaxy Book2
 - CPU: Intel 12th Core i7 1255U (4+8) @ 4,7 GHz
 - GPU: Intel Iris Xe (96) @ 1,25 GHz 
 - RAM: DDR5 2x4GB @ ???
 - Storage:
-    - NVMe: 240GB
+    - NVMe: 256GB
     - SSD: 240GB
+- Screen: LED 15,6" FHD
 
 ![PartitionScheme](https://github.com/jKy0n/CrisNote-dotfiles/blob/bcadd89ceef071bc155da72d8f3fe14488fa450d/Pictures/dotfiles-media-CrisNote/CrisNote-PartitionScheme-26-Nov-2024.png)
 

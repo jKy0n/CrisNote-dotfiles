@@ -122,13 +122,18 @@
         // },
         // {
         //     "type": "memory",
-        //     "key": "  ",
+        //     "key": "    ",
         //     "format": "Corsair Vengeance RGB RT - {1} / {2} ({3})"
         // },
         {
             "type": "gpu",
             "detectionMethod": "pci",
             "key": "  󰢮"
+        },
+        {
+            "type": "memory",
+            "key": "  ",
+            "format": "Unknown - {1} / {2} ({3})"
         },
         {
             "type": "board",
