@@ -9,26 +9,43 @@ local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
+local gears = require("gears")
+local beautiful = require("beautiful")
+
+
 local theme = {}
 
-theme.font          = "sans 8"
+-- fonte do Awesome --
+theme.font              =   "MesloLGS Nerd Font Bold 8"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
-theme.bg_systray    = theme.bg_normal
+-- Basicamente bg é fundo e fg é texto --
+-- Cor de fundo da Wibar --
+theme.bg_normal         =   "#1e2030"
+theme.bg_focus          =   "#8aadf4"
+theme.bg_urgent         =   "#ed8796"
+theme.bg_minimize       =   "#181926"
+theme.bg_systray        =   theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+-- Cor do texto da Wibar --
+theme.fg_normal         =   "#cad3f5"
+theme.fg_focus          =   "#1e2030"
+theme.fg_urgent         =   "#1e2030"
+theme.fg_minimize       =   "#6e738d"
 
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+-- Cor da borda das janelas/Clients --
+theme.border_normal     =   "#1e2030"
+theme.border_focus      =   "#8aadf4"
+theme.border_active     =   "#8aadf4"
+theme.border_marked     =   "#ed8796"
+
+-- Cor do texto dos Tags --
+theme.taglist_fg_empty  =   "#6e738d"
+
+-- Tamanho do gap entre as janelas --
+theme.useless_gap       =   dpi(2)
+
+-- Tamanho da borda das janelas --
+theme.border_width      =   dpi(3)
 
 -- There are other variable sets
 -- overriding the default one when
@@ -44,13 +61,13 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
-)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
-)
+-- local taglist_square_size = dpi(4)
+-- theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+--     taglist_square_size, theme.fg_normal
+-- )
+-- theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
+--     taglist_square_size, theme.fg_normal
+-- )
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -121,6 +138,12 @@ theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 theme.awesome_icon = theme_assets.awesome_icon(
     theme.menu_height, theme.bg_focus, theme.fg_focus
 )
+
+
+
+theme.taglist_shape = gears.shape.rounded_rect
+theme.notification_shape = gears.shape.rounded_rect
+
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
