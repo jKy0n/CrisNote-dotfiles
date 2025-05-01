@@ -471,8 +471,37 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
+
+
+            wibox.widget.textbox('   '),
+            wibox.widget.textbox('   '),
+            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/dwmBlocksCpuUsage"', 1),
+            wibox.widget.textbox(' | '),
+            wibox.widget.textbox('   '),    
+--            mem.widget,
+            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/memoryUsage-widget.sh"', 1),
+            wibox.widget.textbox(' | '),
+            wibox.widget.textbox('  '),
+            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNoteCPUtemp.sh"', 1),
+            wibox.widget.textbox(' | '),
+            wibox.widget.textbox('   '),
+            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/battery-widget.sh"', 5),
+            wibox.widget.textbox(' |  '),
+
+
+            volume_widget({
+                widget_type = 'arc',
+                thickness = 2,
+                step = 5,
+                mixer_cmd = 'pavucontrol',
+                device = '@DEFAULT_SINK@',
+                tooltip = 'false'
+            }),
+            tbox_separator_space,
             todo_widget(),
+            tbox_separator_space,
             wibox.widget.systray(),
+            tbox_separator_space,
             mytextclock,
             tbox_separator_space,
 
@@ -789,7 +818,7 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
-     }
+        }
     },
 
 
@@ -870,11 +899,11 @@ properties = { floating = false,
 { rule_any = { name = { "kclock", "kclock" } },
 properties = { floating = true,
 placement = awful.placement.centered,
-tag = 1, },},    
+tag = awful.screen.focused().tags[1], },},    
 
 { rule = { name = "KDE Connect" },
 properties = { floating = true,
-                tag = 1,
+                tag = awful.screen.focused().tags[1],
 placement = awful.placement.centered,},},    
 
 { rule_any = { name = { "krita", "krita" } },
@@ -921,7 +950,7 @@ end },
 -- 
 { rule_any = {  class = { "obsidian", "obsidian" } },
 properties = {  floating = false,
-                tag = 3,},},
+    tag = awful.screen.focused().tags[3],},},
 
 { rule_any = { name = { "okular", "okular" } },
 properties = { floating = true, name = "muPDF",
@@ -941,7 +970,7 @@ placement = awful.placement.centered },},
 
 { rule_any = { class = {"pavucontrol", "Pavucontrol"} },
 properties = { floating = false,
-                tag = 5,},},
+tag = awful.screen.focused().tags[4],},},
 -- Q
 -- 
 { rule = { class = "qt5ct" },
@@ -971,7 +1000,7 @@ properties = { floating = false,
 { rule = { class = "Spotify" },
 properties = { floating = false,
 placement = awful.placement.centered,
-tag = 5,},},
+tag = awful.screen.focused().tags[4],},},
 
 { rule_any = { class = {"snappergui", "Snapper-gui"} },
 properties = { floating = true,
@@ -991,13 +1020,13 @@ properties = { floating = false,
 { rule_any = { class = {"virt-manager", "Virt-manager"} },
 properties = { floating = false,
     callback = function(c)
-        create_volatile_tag(c, " VMs ", 2, awful.layout.suit.tile)
+        create_volatile_tag(c, " VMs ", 1, awful.layout.suit.tile)
     end,},},
 
     { rule_any = { class = {"code", "Code"} }, -- VSCode
 properties = { floating = false,
 placement = awful.placement.left,
-tag = screen[1].tags[4],},},
+tag = awful.screen.focused().tags[2],},},
 
 -- W
 -- 
