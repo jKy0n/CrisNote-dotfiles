@@ -408,13 +408,13 @@ awful.tag.add(" notes (3) ", {
     -- screen = s,
 })
 
-awful.tag.add(" music (5) ", {
+awful.tag.add(" music (4) ", {
     layout = awful.layout.suit.tile,
     selected = false,
     -- screen = s,
 })
 
-awful.tag.add(" term (6) ", {
+awful.tag.add(" term (5) ", {
     layout = awful.layout.suit.tile,
     selected = false,
     -- screen = s,
