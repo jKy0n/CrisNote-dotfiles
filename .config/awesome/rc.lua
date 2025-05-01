@@ -408,7 +408,13 @@ awful.tag.add(" notes (3) ", {
     -- screen = s,
 })
 
-awful.tag.add(" term (4) ", {
+awful.tag.add(" music (5) ", {
+    layout = awful.layout.suit.tile,
+    selected = false,
+    -- screen = s,
+})
+
+awful.tag.add(" term (6) ", {
     layout = awful.layout.suit.tile,
     selected = false,
     -- screen = s,
@@ -449,17 +455,25 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            s.mylayoutbox,
             -- mylauncher,
+            tbox_separator_space,
+            s.mylayoutbox,
+            tbox_separator_space,
+            tbox_separator_space,
             s.mytaglist,
+            tbox_separator_space,
             s.mypromptbox,
+            tbox_separator_space,
         },
+        
         s.mytasklist, -- Middle widget
+        
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
+            tbox_separator_space,
 
             logout_menu_widget{
                 font = 'MesloLGS Nerd Font Bold 10',
@@ -469,6 +483,7 @@ awful.screen.connect_for_each_screen(function(s)
                 onreboot   =  function() awful.spawn.with_shell("systemctl reboot") end,
                 onpoweroff =  function() awful.spawn.with_shell("systemctl poweroff") end,
             },
+            tbox_separator_space
         },
     }
 end)

@@ -140,7 +140,7 @@ theme.awesome_icon = theme_assets.awesome_icon(
 )
 
 
-
+theme.tasklist_shape = gears.shape.rounded_rect
 theme.taglist_shape = gears.shape.rounded_rect
 theme.notification_shape = gears.shape.rounded_rect
 
