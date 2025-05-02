@@ -1153,6 +1153,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Set wallpaper
 awful.spawn.with_shell("feh --bg-fill ~/Pictures/Wallpapers/galaxia-de-andromeda-4k.webp")
+awful.spawn.once("xsettingsd")
 
 
 -- Start awesome target on systemd (screensaver dependency)
