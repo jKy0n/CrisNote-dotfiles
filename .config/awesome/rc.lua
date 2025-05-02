@@ -21,6 +21,8 @@ require("awful.hotkeys_popup.keys")
 
 
 -- my widgets
+local battery_widget = require("jkyon-widgets.battery_widget")
+
 local lain = require "lain"
 local mycpu = lain.widget.cpu()
 local mymem = lain.widget.mem()
@@ -485,9 +487,9 @@ awful.screen.connect_for_each_screen(function(s)
             awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNoteCPUtemp.sh"', 1),
             wibox.widget.textbox(' | '),
             wibox.widget.textbox('   '),
-            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/battery-widget.sh"', 5),
+            -- awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/battery-widget.sh"', 5),
+            battery_widget,
             wibox.widget.textbox(' |  '),
-
 
             volume_widget({
                 widget_type = 'arc',
