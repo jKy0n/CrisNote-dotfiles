@@ -393,31 +393,37 @@ local tasklist_buttons = gears.table.join(
 
 
 awful.tag.add(" system (1) ", {
-    layout = awful.layout.suit.tile,
+    layout = awful.layout.suit.max,
     selected = false,
     -- screen = s,
 })
 
 awful.tag.add(" code (2) ", {
-    layout = awful.layout.suit.tile,
+    layout = awful.layout.suit.max,
     selected = true,
     -- screen = s,
 })
 
-awful.tag.add(" notes (3) ", {
+awful.tag.add(" www (3) ", {
     layout = awful.layout.suit.tile,
     selected = false,
     -- screen = s,
 })
 
-awful.tag.add(" music (4) ", {
+awful.tag.add(" notes (4) ", {
     layout = awful.layout.suit.tile,
     selected = false,
     -- screen = s,
 })
 
-awful.tag.add(" term (5) ", {
+awful.tag.add(" music (5) ", {
     layout = awful.layout.suit.tile,
+    selected = false,
+    -- screen = s,
+})
+
+awful.tag.add(" term (6) ", {
+    layout = awful.layout.suit.tile.left,
     selected = false,
     -- screen = s,
 })
@@ -952,7 +958,7 @@ end },
 -- 
 { rule_any = {  class = { "obsidian", "obsidian" } },
 properties = {  floating = false,
-    tag = awful.screen.focused().tags[3],},},
+    tag = awful.screen.focused().tags[4],},},
 
 { rule_any = { name = { "okular", "okular" } },
 properties = { floating = true, name = "muPDF",
@@ -1002,7 +1008,7 @@ properties = { floating = false,
 { rule = { class = "Spotify" },
 properties = { floating = false,
 placement = awful.placement.centered,
-tag = awful.screen.focused().tags[4],},},
+tag = awful.screen.focused().tags[5],},},
 
 { rule_any = { class = {"snappergui", "Snapper-gui"} },
 properties = { floating = true,
