@@ -3,12 +3,31 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Carrega todas as configurações modulares
-if [ -d ~/.config/zsh/conf.d ]; then
-  for config_file in ~/.config/zsh/conf.d/*.zsh; do
-    source "$config_file"
-  done
-fi
+# Define o diretório onde os módulos estão localizados
+ZSHRC_D="$HOME/.config/zsh/conf.d"
+
+# Carrega todos os arquivos *.zsh no diretório de módulos
+[ -r "$ZSHRC_D/env.zsh" ] && source "$ZSHRC_D/env.zsh"
+[ -r "$ZSHRC_D/history.zsh" ] && source "$ZSHRC_D/history.zsh"
+[ -r "$ZSHRC_D/keybinds.zsh" ] && source "$ZSHRC_D/keybinds.zsh"
+[ -r "$ZSHRC_D/plugins.zsh" ] && source "$ZSHRC_D/plugins.zsh"
+[ -r "$ZSHRC_D/pay-respects.zsh" ] && source "$ZSHRC_D/pay-respects.zsh"
+[ -r "$ZSHRC_D/secrets.zsh" ] && source "$ZSHRC_D/secrets.zsh"
+[ -r "$ZSHRC_D/ssh-agent.zsh" ] && source "$ZSHRC_D/ssh-agent.zsh"
+[ -r "$ZSHRC_D/aliases.zsh" ] && source "$ZSHRC_D/aliases.zsh"
 
 # Configuração do Powerlevel10k (gerada pelo p10k configure)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Autoinicialização do tmux
+[ -r "$ZSHRC_D/tmux.zsh" ] && source "$ZSHRC_D/tmux.zsh"
+
+# Iniciar o Tmux automaticamente, se não estiver dentro de uma sessão
+# if [[ -t 1 ]]; then
+#     if command -v tmux >/dev/null 2>&1; then
+#         if [[ -z "$TMUX" ]]; then
+#             # Cria uma nova sessão numerada sempre
+#             tmux new-session
+#         fi
+#     fi
+# fi
