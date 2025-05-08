@@ -2,7 +2,7 @@
 
 It's all about laptop traveler 
 
-![fastfetch](https://github.com/jKy0n/CrisNote-dotfiles/blob/main/media/fastfetch-08-05-2025.png)
+![fastfetch](https://github.com/jKy0n/CrisNote-dotfiles/blob/master/Pictures/CrisNote-media/fastfetch-08-05-2025.png)
 
 ## Operational System:
 
