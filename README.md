@@ -1,10 +1,10 @@
-# CrisNote-dotfiles
+# 💻 CrisNote-dotfiles
 
-It's all about laptop traveler 
+It's all about laptop traveler 🤍
 
 ![fastfetch](https://github.com/jKy0n/CrisNote-dotfiles/blob/master/Pictures/CrisNote-media/fastfetch-08-05-2025.png)
 
-## Operational System:
+## 🧬 Operational System:
 
 - **OS:** `Arch Linux` x86_64  
 - **Kernel:** 6.14.X-arch1-1  
