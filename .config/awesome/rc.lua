@@ -505,6 +505,7 @@ awful.screen.connect_for_each_screen(function(s)
                 device = '@DEFAULT_SINK@',
                 tooltip = 'false'
             }),
+
             tbox_separator_space,
             todo_widget(),
             tbox_separator_space,
@@ -698,8 +699,7 @@ clientkeys = gears.table.join(
     awful.key({ "Control" }, "Print", function () awful.util.spawn("flameshot full") end),
 
         -- Lock screen --
-    awful.key({ modkey, "Control" }, "Escape", function () awful.util.spawn("light-locker-command -l") end),
-
+    awful.key({ modkey, "Mod1" }, "Escape", function () awful.util.spawn("light-locker-command -l") end),
         -- Centralize window --
     awful.key({ modkey, "Shift" }, "o", function()
         if client.focus then
