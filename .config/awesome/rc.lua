@@ -646,7 +646,7 @@ globalkeys = gears.table.join(
     -- awful.key({ modkey }, "p", function() menubar.show() end,
     --           {description = "show the menubar", group = "launcher"})
 
-
+    -- Super + p = Rofi launcher
     awful.key({ modkey, }, "p",
     --   function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run\" -modi combi -icon-theme \"Papirus\" -show-icons -theme ~/.config/rofi/config.rasi") end),
     function () awful.util.spawn("rofi  -config /home/jkyon/.config/rofi/config.rasi \
@@ -668,7 +668,7 @@ globalkeys = gears.table.join(
             {description = "show rofi emojis", group = "launcher"}),        
 
       
-    -- alt + tab
+    -- alt + tab = Rofi task switcher
     awful.key({ "Mod1", }, "Tab",
         function () awful.util.spawn("rofi  -config /home/jkyon/.config/rofi/config.rasi \
                                             -show window \
@@ -681,7 +681,7 @@ globalkeys = gears.table.join(
                                             -modi combi -icon-theme \"Papirus\" \
                                             -show-icons -theme /home/jkyon/.config/rofi/theme-tab.rasi") 
             end,
-            {description = "show task windows", group = "launcher"}),
+            {description = "show rofi task windows", group = "launcher"}),
 
 
     ---------------------  Tags Manipulation keybinds  ---------------------
