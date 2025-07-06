@@ -20,16 +20,22 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 
+-- Themes define colours, icons, font and wallpapers.
+beautiful.init("/home/jkyon/.config/awesome/themes/jkyon-catppuccin-theme/theme.lua")
+
+
 -- my widgets
 local battery_widget = require("jkyon-widgets.battery_widget")
+local internet_widget = require("jkyon-widgets.internet_widget")
+local dnd_widget = require("jkyon-widgets.DoNotDisturb_widget")
 
-local lain = require "lain"
-local mycpu = lain.widget.cpu()
-local mymem = lain.widget.mem()
-local mytemp = lain.widget.temp()
+-- local lain = require "lain"
+-- local mycpu = lain.widget.cpu()
+-- local mymem = lain.widget.mem()
+-- local mytemp = lain.widget.temp()
 
-local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
-local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+-- local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+-- local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
 local volume_widget = require('awesome-wm-widgets.pactl-widget.volume')
 local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
@@ -78,8 +84,8 @@ end
 -- }}}
 
 -- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/jkyon/.config/awesome/themes/jkyon-catppuccin-theme/theme.lua")
+-- -- Themes define colours, icons, font and wallpapers.
+-- beautiful.init("/home/jkyon/.config/awesome/themes/jkyon-catppuccin-theme/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -159,28 +165,29 @@ end
 
 local cpu_icon = styled_textbox('  ', 11, 2)
 local mem_icon = styled_textbox('   ', 11, 2)
-local gpu_icon = styled_textbox(' 󰢮 ', 16, 1)
+-- local gpu_icon = styled_textbox(' 󰢮 ', 16, 1)
 local temp_icon = styled_textbox('  ', 11, 1)
-local psu_icon = styled_textbox(' 󰚥 ', 11, 1)
+-- local psu_icon = styled_textbox(' 󰚥 ', 11, 1)
+local battery_icon = styled_textbox('  ', 11, 1)
 
 
-local cpu = lain.widget.cpu {
-    settings = function()
-        widget:set_markup("CPU " .. cpu_now.usage .. "%")
-    end
-}
+-- local cpu = lain.widget.cpu {
+--     settings = function()
+--         widget:set_markup("CPU " .. cpu_now.usage .. "%")
+--     end
+-- }
 
-local mem = lain.widget.mem {
-    settings = function()
-        widget:set_markup("RAM " .. mem_now.perc .. "%")
-    end
-}
+-- local mem = lain.widget.mem {
+--     settings = function()
+--         widget:set_markup("RAM " .. mem_now.perc .. "%")
+--     end
+-- }
 
-local temp = lain.widget.temp({
-    settings = function()
-        widget:set_markup("Temp " .. coretemp_now .. "°C ")
-    end
-})
+-- local temp = lain.widget.temp({
+--     settings = function()
+--         widget:set_markup("Temp " .. coretemp_now .. "°C ")
+--     end
+-- })
 
 
 -- {{{ Wibar
@@ -480,22 +487,21 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
 
-
-            wibox.widget.textbox('   '),
-            wibox.widget.textbox('   '),
-            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/dwmBlocksCpuUsage"', 1),
-            wibox.widget.textbox(' | '),
-            wibox.widget.textbox('   '),    
---            mem.widget,
-            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/memoryUsage-widget.sh"', 1),
-            wibox.widget.textbox(' | '),
-            wibox.widget.textbox('  '),
-            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNoteCPUtemp.sh"', 1),
-            wibox.widget.textbox(' | '),
-            wibox.widget.textbox('   '),
-            -- awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/battery-widget.sh"', 5),
+            internet_widget,
+            tbox_separator_space,
+            cpu_icon,   --  
+            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNote/StatusBar-Scripts/CPU-usage-monitor.sh"', 1),
+            tbox_separator_pipe, -- |
+            mem_icon,  --  
+            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNote/StatusBar-Scripts/RAM-usage-monitor.sh"', 1),
+            tbox_separator_pipe, -- |
+            temp_icon,  --  
+            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNote/StatusBar-Scripts/CPU-temp-monitor.sh"', 1),
+            tbox_separator_pipe, -- |
+            battery_icon,  --  
             battery_widget,
-            wibox.widget.textbox(' |  '),
+            tbox_separator_pipe, -- |
+            tbox_separator_space,
 
             volume_widget({
                 widget_type = 'arc',
@@ -510,6 +516,9 @@ awful.screen.connect_for_each_screen(function(s)
             todo_widget(),
             tbox_separator_space,
             wibox.widget.systray(),
+            tbox_separator_space,
+            tbox_separator_space,
+            dnd_widget,
             tbox_separator_space,
             mytextclock,
             tbox_separator_space,
@@ -646,6 +655,17 @@ globalkeys = gears.table.join(
                                         -theme /home/jkyon/.config/rofi/theme.rasi") 
         end,
         {description = "show rofi", group = "launcher"}),
+
+
+    -- Super + o = Rofi emojis
+    awful.key({ modkey, }, "o",
+        --   function () awful.util.spawn("rofi -config ~/.config/rofi/config -show combi -combi-modi \"window,run\" -modi combi -icon-theme \"Papirus\" -show-icons -theme ~/.config/rofi/config.rasi") end),
+        function () awful.util.spawn("rofi  -config /home/jkyon/.config/rofi/config.rasi \
+                                            -modes \"drun,emoji\" -show emoji \
+                                            -emoji-format \"<span font_family=\'NotoColorEmoji\' size=\'xx-large\'>{emoji}</span>  <span weight=\'bold\'>{name}</span>\" \
+                                            -theme /home/jkyon/.config/rofi/theme-emoji.rasi") 
+            end,
+            {description = "show rofi emojis", group = "launcher"}),        
 
       
     -- alt + tab
