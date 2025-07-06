@@ -65,7 +65,7 @@ end
 update_widget(pkg_widget)
 
 -- E depois usa o timer
-awful.widget.watch("sleep 3600", 3600, update_widget, pkg_widget)   -- 1 hora
+awful.widget.watch("sleep 3600", 3600, update_widget, pkg_widget)   -- 1 hora (3600 segundos)
 
 pkg_widget:connect_signal("button::press", function(_, x, y, button)
     if button == 1 then
