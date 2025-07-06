@@ -28,6 +28,7 @@ beautiful.init("/home/jkyon/.config/awesome/themes/jkyon-catppuccin-theme/theme.
 local battery_widget = require("jkyon-widgets.battery_widget")
 local internet_widget = require("jkyon-widgets.internet_widget")
 local dnd_widget = require("jkyon-widgets.DoNotDisturb_widget")
+local update_checker = require("jkyon-widgets.paru_update_checker")
 
 -- local lain = require "lain"
 -- local mycpu = lain.widget.cpu()
@@ -488,6 +489,7 @@ awful.screen.connect_for_each_screen(function(s)
             -- mykeyboardlayout,
 
             internet_widget,
+            update_checker,
             tbox_separator_space,
             cpu_icon,   --  
             awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNote/StatusBar-Scripts/CPU-usage-monitor.sh"', 1),
