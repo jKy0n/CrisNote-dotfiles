@@ -1,33 +1,38 @@
-# Powerlevel10k Instant Prompt (mantenha no topo!)
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 # Define o diretório onde os módulos estão localizados
-ZSHRC_D="$HOME/.config/zsh/conf.d"
+ZSHRC_D="$HOME/.config/zsh/zshrc.d"
 
-# Carrega todos os arquivos *.zsh no diretório de módulos
-[ -r "$ZSHRC_D/env.zsh" ] && source "$ZSHRC_D/env.zsh"
-[ -r "$ZSHRC_D/history.zsh" ] && source "$ZSHRC_D/history.zsh"
-[ -r "$ZSHRC_D/keybinds.zsh" ] && source "$ZSHRC_D/keybinds.zsh"
-[ -r "$ZSHRC_D/plugins.zsh" ] && source "$ZSHRC_D/plugins.zsh"
-[ -r "$ZSHRC_D/pay-respects.zsh" ] && source "$ZSHRC_D/pay-respects.zsh"
-[ -r "$ZSHRC_D/secrets.zsh" ] && source "$ZSHRC_D/secrets.zsh"
-[ -r "$ZSHRC_D/ssh-agent.zsh" ] && source "$ZSHRC_D/ssh-agent.zsh"
-[ -r "$ZSHRC_D/aliases.zsh" ] && source "$ZSHRC_D/aliases.zsh"
-
-# Configuração do Powerlevel10k (gerada pelo p10k configure)
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Autoinicialização do tmux
-[ -r "$ZSHRC_D/tmux.zsh" ] && source "$ZSHRC_D/tmux.zsh"
+# Detecta a distribuição ou se está no TTY e carrega o arquivo correspondente
+if [[ "$(tty)" == "/dev/tty1" ]]; then
+    [ -r "$ZSHRC_D/zshrc-arch-tty.zsh" ] && source "$ZSHRC_D/zshrc-arch-tty.zsh"
+else
+# Detecta a distro de forma robusta (os-release)
+    if [[ -r /etc/os-release ]]; then
+        . /etc/os-release   # exporta ID, ID_LIKE, NAME, etc.
+        case "$ID" in
+            arch)   [ -r "$ZSHRC_D/zshrc-arch.zsh" ]   && source "$ZSHRC_D/zshrc-arch.zsh" ;;
+            gentoo) [ -r "$ZSHRC_D/zshrc-gentoo.zsh" ] && source "$ZSHRC_D/zshrc-gentoo.zsh" ;;
+            *)      print -P "%F{yellow}[zshrc]%f ID desconhecido: $ID" ;;
+        esac
+    fi
+fi
 
 # Iniciar o Tmux automaticamente, se não estiver dentro de uma sessão
-# if [[ -t 1 ]]; then
-#     if command -v tmux >/dev/null 2>&1; then
-#         if [[ -z "$TMUX" ]]; then
-#             # Cria uma nova sessão numerada sempre
-#             tmux new-session
-#         fi
-#     fi
-# fi
+if [[ -t 1 ]]; then
+    if command -v tmux >/dev/null 2>&1; then
+        if [[ -z "$TMUX" ]]; then
+            # Cria uma nova sessão numerada sempre
+            tmux new-session
+        fi
+    fi
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
