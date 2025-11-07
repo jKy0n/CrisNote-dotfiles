@@ -99,6 +99,7 @@ function wibar.setup(s)
 
             internet_widget,
             update_checker,
+            tbox_separator_space,
             cpu_monitor({ "usage", "freq", "temp" }),
             tbox_separator_pipe, -- |
             cpu_widget(),            
