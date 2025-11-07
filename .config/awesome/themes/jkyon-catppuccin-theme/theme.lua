@@ -1,6 +1,6 @@
 --[[
         jKyon (John Kennedy Loria Segundo)
-        wibar.lua – awesomeWM
+        theme.lua – awesomeWM
         2025-11-07
 
         Purpose:
