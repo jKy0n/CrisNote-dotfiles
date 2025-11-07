@@ -7,7 +7,7 @@ It's all about laptop traveler 🤍
 ## 🧬 Operational System:
 
 - **OS:** `Arch Linux` x86_64  
-- **Kernel:** 6.14.X-arch1-1  
+- **Kernel:** Linux 6.17.X-cachyos
 - **Shell:** `zsh` (`bash` for scripts)  
 - **GS:** `X.Org` (X11)  
 - **Login Manager:** `LightDM` + `light-locker`  
@@ -63,6 +63,6 @@ It's all about laptop traveler 🤍
 
 | Device |     path     |          Model           | Capacity |
 |--------|--------------|--------------------------|----------|
-|  HDD   |   /dev/sda   |      Kingston A400      |   240 GB   |
+|  HDD   |   /dev/sda   |       Kingston A400      |   240 GB   |
 
 
