@@ -17,6 +17,8 @@ local awful = require("awful")
 local wibox = require("wibox")
 
 -- my widgets
+local cpu_monitor = require("jkyon-widgets.cpu_monitor")
+local ram_monitor = require("jkyon-widgets.ram_monitor")
 local battery_widget = require("jkyon-widgets.battery_widget")
 local internet_widget = require("jkyon-widgets.internet_widget")
 local dnd_widget = require("jkyon-widgets.DoNotDisturb_widget")
@@ -26,6 +28,8 @@ local volume_widget = require('awesome-wm-widgets.pactl-widget.volume')
 local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 
 --------------------------------------------------------------
 tbox_separator_space = wibox.widget.textbox (" ")
@@ -50,8 +54,7 @@ local battery_icon = styled_textbox('  ', 11, 1)
 --------------------------------------------------------------
 
 -- mytextclock = wibox.widget.textclock()
-mytextclock = wibox.widget.textclock(' %a, %d %b - %H:%M ', 60)
-
+mytextclock = wibox.widget.textclock(' %a, %d %b - %H:%M ', 59)
 
 local cw = calendar_widget({
     theme = 'naughty',
@@ -67,8 +70,6 @@ mytextclock:connect_signal("button::press",
         if button == 1 then cw.toggle() end
     end)
 
-    -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
 
 local wibar = {}
 
@@ -98,19 +99,14 @@ function wibar.setup(s)
 
             internet_widget,
             update_checker,
-            tbox_separator_space,
-            cpu_icon,   --  
-            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNote/StatusBar-Scripts/CPU-usage-monitor.sh"', 1),
+            cpu_monitor({ "usage", "freq", "temp" }),
             tbox_separator_pipe, -- |
-            mem_icon,  --  
-            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNote/StatusBar-Scripts/RAM-usage-monitor.sh"', 1),
+            cpu_widget(),            
             tbox_separator_pipe, -- |
-            temp_icon,  --  
-            awful.widget.watch('bash -c "sh /home/jkyon/ShellScript/CrisNote/StatusBar-Scripts/CPU-temp-monitor.sh"', 1),
+            ram_monitor({ "usage_available" }),
             tbox_separator_pipe, -- |
-            battery_icon,  --  
+            battery_icon,
             battery_widget,
-            tbox_separator_pipe, -- |
             tbox_separator_space,
 
             volume_widget({
