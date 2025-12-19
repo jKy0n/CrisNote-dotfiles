@@ -4,6 +4,7 @@
 # Lista de aplicativos e seus comandos de inicialização
 APPS=(
     "picom -b"
+    "nm-applet"
     "xfce4-clipman"
     "libinput-gestures"
     "light-locker"
