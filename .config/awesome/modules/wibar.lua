@@ -24,6 +24,7 @@ local internet_widget = require("jkyon-widgets.internet_widget")
 local dnd_widget = require("jkyon-widgets.DoNotDisturb_widget")
 local update_checker = require("jkyon-widgets.paru_update_checker")
 
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 local volume_widget = require('awesome-wm-widgets.pactl-widget.volume')
 local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
@@ -90,9 +91,9 @@ function wibar.setup(s)
             s.mypromptbox,
             tbox_separator_space,
         },
-        
+
         s.mytasklist, -- Middle widget
-        
+
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
@@ -102,7 +103,7 @@ function wibar.setup(s)
             tbox_separator_space,
             cpu_monitor({ "usage", "freq", "temp" }),
             tbox_separator_pipe, -- |
-            cpu_widget(),            
+            cpu_widget(),
             tbox_separator_pipe, -- |
             ram_monitor({ "usage_available" }),
             tbox_separator_pipe, -- |
@@ -118,6 +119,13 @@ function wibar.setup(s)
                 device = '@DEFAULT_SINK@',
                 tooltip = 'false'
             }),
+
+            tbox_separator_space,
+                brightness_widget{
+                    type = 'arc',
+                    program = 'brightnessctl',
+                    step = 5,
+            },
 
             tbox_separator_space,
             todo_widget(),

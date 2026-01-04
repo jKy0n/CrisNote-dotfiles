@@ -10,6 +10,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local gears = require("gears")
 local tag_utils = require("modules.tag_utils")
 
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 local volume_widget = require("awesome-wm-widgets.wpctl-widget.volume")
 
 ----------------------------------------------------------------
@@ -186,6 +187,10 @@ clientkeys = gears.table.join(
     awful.key({}, "XF86AudioRaiseVolume", function() volume_widget:inc(5) end),
     awful.key({}, "XF86AudioLowerVolume", function() volume_widget:dec(5) end),
     awful.key({}, "XF86AudioMute", function() volume_widget:toggle() end),
+
+    -- Brightness control --
+    awful.key({}, "XF86MonBrightnessUp", function () brightness_widget:inc() end, {description = "increase brightness", group = "custom"}),
+    awful.key({}, "XF86MonBrightnessDown", function () brightness_widget:dec() end, {description = "decrease brightness", group = "custom"}),
 
     -- Screenshot / Printscreen --
     awful.key({}, "Print", function () awful.util.spawn("flameshot gui") end),
